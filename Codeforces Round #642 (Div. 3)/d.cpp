@@ -23,16 +23,29 @@ void printV(vi v) {
 }
 
 void putInMiddle(ll l, ll r, int i, vi & a) {
-    if (r-l < 1) return;
+    //cout << " l : " << l << " r : " << r << "\n"; 
+    //cout << "r - l : " << r-l << "\n";
+    if (r-l == 1) {
+        a.at(l) = i;
+        if (r > a.size()/2)
+            putInMiddle(r, r, i+2, a);
+        else 
+            putInMiddle(r, r, i+2, a);
+    } else if (r-l == 2) {
+        a.at(r) = i;
+    } else if (r-l <= 0) {
+        a.at(l) = i;
+        return;
+    }
     else {
         a.at((r+l)/2) = i;
-        printV(a);
+        //printV(a);
         if ((r-l)%2 == 0) {
-            putInMiddle(l, r/2-1, i+1, a);
-            putInMiddle(r/2+1, r, i+2, a);
+            putInMiddle(l, (r+l)/2-1, i+1, a);
+            putInMiddle((r+l)/2+1, r, i+2, a);
         } else {
-            putInMiddle(l, r/2-1, i+2, a);
-            putInMiddle(r/2+1, r, i+1, a);
+            putInMiddle(l, (r+l)/2-1, i+2, a);
+            putInMiddle((r+l)/2+1, r, i+1, a);
         }
     }
 }
