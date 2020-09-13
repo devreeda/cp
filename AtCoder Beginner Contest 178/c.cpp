@@ -24,9 +24,27 @@ void printV(vi v) {
 
 //g++ -std=c++11 -O2 -Wall c.cpp
 
-void solve() {
-
+ll fct(ll n)
+{
+    if(n > 1)
+        return (n * fct(n - 1))%(1000000007);
+    else
+        return 1;
 }
+
+void solve() {
+    ll n; cin >> n;
+    ll result;
+    if (n==2) cout << 2 << "\n";
+    else if (n<2) cout << 0 << "\n";
+    else {
+        result = (ll)((n*n-n)%(1000000007))*((ll)pow(10.0, n-2)%(1000000007));
+        cout << result%(1000000007) << "\n";
+    } 
+}
+
+
+
 
 int main() {
     ios_base::sync_with_stdio(0);
@@ -36,11 +54,7 @@ int main() {
         freopen("output.txt", "w", stdout);
     #endif
 
-    int tt;
-    cin >> tt;
-    while (tt--) {
         solve();
-    }
 
 
     /**

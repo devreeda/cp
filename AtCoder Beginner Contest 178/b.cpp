@@ -25,7 +25,30 @@ void printV(vi v) {
 //g++ -std=c++11 -O2 -Wall c.cpp
 
 void solve() {
+    ll  a, b, c, d;
+    cin >>a>>b>>c>>d;
 
+    vector<ll> v = {a*c, a*d, b*c, b*d};
+    ll max = a*c;
+    for (int i = 1; i<4; ++i) {
+        if (v.at(i) > max) max = v.at(i); 
+    }
+    cout << max << "\n";
+
+/*
+    if (b<0) { // a <0
+        if (c < 0) {
+            x = a; y = c;
+        } else { // c peut être < 0
+            x = b; y = c;
+        }
+    } else {
+        if (c<0) {
+            x = b; y = c;
+        } else {
+
+        }
+    }*/
 }
 
 int main() {
@@ -35,12 +58,7 @@ int main() {
         freopen("input.txt", "r", stdin);
         freopen("output.txt", "w", stdout);
     #endif
-
-    int tt;
-    cin >> tt;
-    while (tt--) {
         solve();
-    }
 
 
     /**

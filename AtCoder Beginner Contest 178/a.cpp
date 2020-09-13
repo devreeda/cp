@@ -25,7 +25,8 @@ void printV(vi v) {
 //g++ -std=c++11 -O2 -Wall c.cpp
 
 void solve() {
-
+    int x; cin >> x;
+    cout << 1-x << "\n";
 }
 
 int main() {
@@ -35,12 +36,7 @@ int main() {
         freopen("input.txt", "r", stdin);
         freopen("output.txt", "w", stdout);
     #endif
-
-    int tt;
-    cin >> tt;
-    while (tt--) {
         solve();
-    }
 
 
     /**
