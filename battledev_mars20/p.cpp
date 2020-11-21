@@ -22,10 +22,17 @@ void printV(vi v) {
     cout << "\n";
 }
 
-//g++ -std=c++11 -O2 -Wall a.cpp
+//g++ -std=c++11 -O2 -Wall p.cpp
 
 void solve() {
-
+    int n,k; cin >> n >> k;
+    string s; cin >> s;
+    //conditions de defaite
+    if (s.size() < k || ((s.size() - k)%2 != 0)) 
+        cout << "IMPOSSIBLE" << "\n";
+    else {
+        
+    }
 }
 
 int main() {

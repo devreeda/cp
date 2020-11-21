@@ -35,8 +35,12 @@ int main() {
         freopen("input.txt", "r", stdin);
         freopen("output.txt", "w", stdout);
     #endif
-    
-    solve();
+
+    int tt;
+    cin >> tt;
+    while (tt--) {
+        solve();
+    }
 
 
     /**

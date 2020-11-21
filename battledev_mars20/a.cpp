@@ -25,7 +25,34 @@ void printV(vi v) {
 //g++ -std=c++11 -O2 -Wall a.cpp
 
 void solve() {
-
+    int n; cin>>n;
+    vector<string> vs;
+    vi v;
+    for (int i = 0; i<n; ++i) {
+        string s;
+        cin >> s;
+        int j;
+        bool isIn = false;
+        for (j=0;j<vs.size();++j) {
+            if (s == vs.at(j)) {
+                v.at(j)++;
+                isIn = true;
+            }
+        }
+        if (!isIn) {
+            vs.push_back(s);
+            v.push_back(1);
+        }
+    }
+    int firstIndex = 0, secondIndex = 1;
+    for (int i = 1; i<v.size(); ++i) {
+        if (v.at(i) > v.at(firstIndex)) firstIndex = i;
+    }
+    if (secondIndex == firstIndex) secondIndex = abs(firstIndex - 1);
+    for (int i = 0; i<v.size(); ++i) {
+        if (v.at(i) > v.at(secondIndex) && v.at(i) < v.at(firstIndex)) secondIndex = i;
+    }
+    cout << vs.at(firstIndex) << " " << vs.at(secondIndex) << "\n";
 }
 
 int main() {
@@ -35,8 +62,7 @@ int main() {
         freopen("input.txt", "r", stdin);
         freopen("output.txt", "w", stdout);
     #endif
-    
-    solve();
+        solve();
 
 
     /**

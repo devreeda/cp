@@ -22,10 +22,24 @@ void printV(vi v) {
     cout << "\n";
 }
 
-//g++ -std=c++11 -O2 -Wall a.cpp
+//g++ -std=c++11 -O2 -Wall b.cpp
 
 void solve() {
-
+    int n; cin >> n;
+    int bestSerie = 1, serie = 1, currentNum;
+    cin >> currentNum;
+    for (int i =1; i<n; ++i) {
+        if (serie > bestSerie) bestSerie = serie;
+        int num; cin >> num;
+        if (num == currentNum) {
+            ++serie;
+        } else {
+            currentNum = num;
+            serie = 1;
+        }
+        if (serie > bestSerie) bestSerie = serie;
+    }
+    cout << bestSerie << "\n";
 }
 
 int main() {

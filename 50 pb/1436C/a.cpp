@@ -41,8 +41,19 @@ bool binarySearch(vi a, int x) {
 void solve() {
     int n, x, pos;
     cin >> n >> x >> pos;
-    vi a1 = {2,3,1,4};
-    cout << binarySearch(a1, x) << endl;
+    /*
+    int nbpossibilites = 0;
+    int l = 0, r = n;
+    int currentPos = (l+r)/2;
+    while (currentPos != pos) {
+        //if (currentPos < pos) 
+    }*/
+
+    cout << 15/2 <<endl;
+
+    //Remplir un tableau trié avec des nombres de 1 à N
+    //Compter les opérations binaires de recherche pour le nombre "pos"
+    //En particulier, les 
 }
 
 int main() {
