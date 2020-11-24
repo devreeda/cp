@@ -17,18 +17,6 @@ typedef vector<vi> vvi;
 #define LSOne(S) (S & (-S))
 #define isBitSet(S, i) ((S >> i) & 1)
 
-bool isPrime(ll number){
-
-    if(number < 2) return false;
-    if(number == 2) return true;
-    if(number % 2 == 0) return false;
-    for(ll i=3; (i*i)<=number; i+=2){
-        if(number % i == 0 ) return false;
-    }
-    return true;
-
-}
-
 void printV(vi v) {
     for (int i = 0; i<v.size(); ++i) cout << v.at(i) << " ";
     cout << "\n";
@@ -37,26 +25,18 @@ void printV(vi v) {
 //g++ -std=c++11 -O2 -Wall a.cpp
 
 void solve() {
-    ll n; cin >> n;
-    //int steps = 0;
-    if (n==1) cout << 0 << "\n";
-    else if (n==2) cout << 1 << "\n";
-    else if (n==3) cout << 2 << '\n';
-    else if (n%2==0) cout << 2 << "\n";
-    else cout << 3 << "\n";
-    /*
-    while (n>1) {
-        if (isPrime(n)) {
-            steps++;
-            n--;
-        } else {
-            ll div = n-1;
-            while (n%div != 0) div--;
-            n = n/div;
-            steps++;
+    float x1, y1, x2, y2;
+    cin >>x1>> y1>> x2>> y2;
+    int n;cin>>n;
+    int nb =0;
+    for (int i =0; i<n;++i) {
+        float x, y;
+        cin >> x >> y;
+        if (x>x1 && x<x2 && y>y1 && y<y2) {
+            ++nb;
         }
     }
-    cout << steps << "\n";*/
+    cout << nb << "\n";
 }
 
 int main() {
@@ -66,12 +46,8 @@ int main() {
         freopen("input.txt", "r", stdin);
         freopen("output.txt", "w", stdout);
     #endif
-
-    int tt;
-    cin >> tt;
-    while (tt--) {
-        solve();
-    }
+    
+    solve();
 
 
     /**
