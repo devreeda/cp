@@ -26,7 +26,38 @@ void printV(vi v) {
 g++ -std=c++11 -O2 -Wall a.cpp
 */
 void solve() {
+    ll n, k; cin>>n>>k;
+    vi v;
+    for (ll i =0; i<n; ++i) {
+        int num; cin>>num;
+        v.push_back(num);
+    }
+    int length = k-1;
+    int most = v.at(0), mostnb = 1;
+    //trouve le nb apparaissant le plus souvent
+    for (ll i = 0; i<n; ++i) {
+        int curr = v.at(i), num = 0;
+        for (ll j = 0; j<n; ++j) {
+            if (i!=j) {
+                if (v.at(j) == curr) ++num;
+            }
+        }
+        if (num > mostnb) {
+            mostnb = num;
+            most = curr;
+        }
+    }
 
+
+    ll i = 0;
+    int count = 0;
+    while (i < v.size()) {
+        if (v.at(i) != most) {
+            i += length+1;
+            ++count;
+        } else ++i;
+    }
+    cout << count << "\n";
 }
 
 int main() {

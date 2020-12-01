@@ -22,23 +22,23 @@ void printV(vi v) {
     cout << "\n";
 }
 
-int n1,n2,c;
-vector<pair<int,int>> especes; // valeur, poids
-
-int dyn[101][10001];
-
-//g++ -std=c++11 -O2 -Wall a.cpp
-
-int getGainMax (int quatiteRestante, int espece) {
-    if (espece == (int)especes.size()) {
-        return 0;
-    }
-
-    int &res = dyn[quantiteRestante][espece];
-}
+/*
+g++ -std=c++11 -O2 -Wall f.cpp
+*/
 
 void solve() {
-    
+    int n; cin >> n;
+    int jour = 0, nuit = 0;
+    for (int i = 0; i<n; ++i) {
+        string s;cin >> s;
+        int a,b;
+        a = stoi(s.substr(0, 2));
+        b = stoi(s.substr(3, 2));
+        if (a > 7 && a<20) ++jour;
+        else ++nuit;
+    }
+    if (nuit>jour) cout << "SUSPICIOUS" << "\n";
+    else cout << "OK" << "\n";
 }
 
 int main() {

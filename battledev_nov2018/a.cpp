@@ -22,23 +22,23 @@ void printV(vi v) {
     cout << "\n";
 }
 
-int n1,n2,c;
-vector<pair<int,int>> especes; // valeur, poids
-
-int dyn[101][10001];
-
 //g++ -std=c++11 -O2 -Wall a.cpp
 
-int getGainMax (int quatiteRestante, int espece) {
-    if (espece == (int)especes.size()) {
-        return 0;
-    }
-
-    int &res = dyn[quantiteRestante][espece];
-}
-
 void solve() {
-    
+    int n;cin>>n;
+    int p ;cin>>p;
+    int prixmax = 0;
+    string nomMax = "KO";
+    for (int i =0; i<n;++i) {
+        string  a; int b; cin>>b>>a;
+        if (b>prixmax) {
+            prixmax = b;
+            nomMax = a;
+        }
+    }
+    if (prixmax > p) 
+        cout << nomMax << "\n";
+    else cout << "KO" << "\n";
 }
 
 int main() {

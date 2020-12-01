@@ -22,8 +22,9 @@ void printV(vi v) {
     cout << "\n";
 }
 
-//g++ -std=c++11 -O2 -Wall a.cpp
-
+/*
+g++ -std=c++11 -O2 -Wall a.cpp
+*/
 void solve() {
 
 }

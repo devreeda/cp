@@ -22,23 +22,30 @@ void printV(vi v) {
     cout << "\n";
 }
 
-int n1,n2,c;
-vector<pair<int,int>> especes; // valeur, poids
-
-int dyn[101][10001];
-
-//g++ -std=c++11 -O2 -Wall a.cpp
-
-int getGainMax (int quatiteRestante, int espece) {
-    if (espece == (int)especes.size()) {
-        return 0;
-    }
-
-    int &res = dyn[quantiteRestante][espece];
-}
-
+/*
+g++ -std=c++11 -O2 -Wall a.cpp
+*/
 void solve() {
-    
+    ll x; cin >> x;
+    ll numMin = 10E6;
+    ll iMin = 10E6;
+    for (ll j = 0;j<x*3;++j) {
+        ll i = 1;
+        ll num = 1+j; //vrai num -= 1
+        ll adder = 2+j;
+        while (i<x) {
+            i+=adder;
+            ++adder;
+            ++num;
+        }
+        //cout << "i : " << i << endl;//
+        //cout << "num : " << num << endl;//
+        if (iMin > i) {
+            numMin = num;
+            iMin = i;
+        }
+    }
+    cout << numMin -x+iMin << "\n";
 }
 
 int main() {
@@ -48,8 +55,12 @@ int main() {
         freopen("input.txt", "r", stdin);
         freopen("output.txt", "w", stdout);
     #endif
-    
-    solve();
+
+    int tt;
+    cin >> tt;
+    while (tt--) {
+        solve();
+    }
 
 
     /**
