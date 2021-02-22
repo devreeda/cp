@@ -26,7 +26,28 @@ void printV(vi v) {
 g++ -std=c++11 -O2 -Wall a.cpp
 */
 void solve() {
-
+    int n;cin>>n;
+    vi v = {0,0,0};
+    for (int i = 0;i<n;++i) {
+        int a;cin>>a;
+        if (a%3 == 0) {
+            v[0]++;
+        }if (a%3 == 1) {
+            v[1]++;
+        }if (a%3 == 2) {
+            v[2]++;
+        }
+    }
+    int num = 0;
+    while (v[0] != v[1] || v[1] != v[2] || v[0] != v[2]) {
+        int indexMax = 0;
+        if (v[1] > v[0]) indexMax = 1;
+        if (v[2] > v[indexMax]) indexMax = 2;
+        v[indexMax]--;
+        v[(indexMax+1)%3]++;
+        ++num;
+    }
+    cout << num << endl;
 }
 
 int main() {

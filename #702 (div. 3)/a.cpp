@@ -26,7 +26,27 @@ void printV(vi v) {
 g++ -std=c++11 -O2 -Wall a.cpp
 */
 void solve() {
-
+    int n;cin>>n;
+    vi v;
+    for (int i = 0; i<n; ++i) {
+        int a; cin >>a;
+        v.push_back(a);
+    }
+    int ans = 0;
+    for (int i = 0; i<n-1;++i) {
+        int a = v[i], b = v[i+1];
+        int max=std::max(a,b), min=std::min(a,b);
+        int k = 0;
+        if (max/(double)min > 2) {
+            double coef = (double)max/min;
+            while (coef > 2.0) {
+                coef/=2.0;
+                ++k;
+            }
+        }
+        ans += k;
+    }
+    cout << ans <<endl;
 }
 
 int main() {

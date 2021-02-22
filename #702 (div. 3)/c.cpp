@@ -26,7 +26,8 @@ void printV(vi v) {
 g++ -std=c++11 -O2 -Wall a.cpp
 */
 void solve() {
-
+    int num;cin>>num;
+    cout << cbrt(num)-(int)cbrt(num) <<endl;
 }
 
 int main() {
