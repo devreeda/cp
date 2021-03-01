@@ -26,7 +26,28 @@ void printV(vi v) {
 g++ -std=c++11 -O2 -Wall b.cpp
 */
 void solve() {
-
+    int n, u, v;
+    cin>>n>>u>>v;
+    vi obstacles;
+    for (int i = 1; i<=n; ++i) {
+        int num; cin>>num;
+        obstacles.push_back(num);
+    }
+    //on parcours les obstacles à la recherche d'une brêche
+    bool isOpen = false;
+    for (int i = 0; i<n-1; ++i) {
+        if (obstacles.at(i+1) < obstacles.at(i)-1 || obstacles.at(i+1) > obstacles.at(i)+1) {
+            isOpen = true;
+            break;
+        }
+    }
+    if (isOpen) {
+        cout << 0 << endl;
+    } else {
+        if (obstacles.at(n-1) == obstacles.at(n-2)) {
+            //cout << 
+        }
+    }
 }
 
 int main() {

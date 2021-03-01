@@ -26,7 +26,28 @@ void printV(vi v) {
 g++ -std=c++11 -O2 -Wall a.cpp
 */
 void solve() {
-
+    int n;cin>>n;
+    int q;cin>>q;
+    int numOf1 = 0;
+    vi a;
+    for (int i = 0; i<n; ++i) {
+        int num;cin>>num;
+        if (num == 1) numOf1++;
+        a.push_back(num);
+    }
+    for (int i = 0; i<q; ++i) {
+        int x,y; cin>>x>>y;
+        if (x == 1) {
+            if (a.at(y-1) == 1) numOf1--;
+            else numOf1++;
+            a.at(y-1) = 1 - a.at(y-1);
+            //cout << a.at(y-1) << endl;
+        } else {
+            //vi b = a;
+            if (y > numOf1) cout << 0 << endl;
+            else cout << 1 << endl;
+        }
+    }
 }
 
 int main() {
@@ -36,12 +57,8 @@ int main() {
         freopen("input.txt", "r", stdin);
         freopen("output.txt", "w", stdout);
     #endif
-
-    int tt;
-    cin >> tt;
-    while (tt--) {
-        solve();
-    }
+    
+    solve();
 
 
     /**
