@@ -38,6 +38,41 @@ bool binarySearch(vi a, int x) {
     return false;
 }
 
+const int MOD = 1e9+7;
+
+int binPow(int a, int n) {
+    int res = 1;
+    while (n) {
+        if (n & 1)
+            res = (1LL * res * a) % MOD;
+        a = (1LL*a*a) % MOD;
+        n >>= 1;
+    }
+    return res;
+}
+
+void binarySearch(int n, int x_position, int &cnt_big, int &cnt_less) {
+    int left = 0, right = n;
+
+    while (left < right) {
+        int middle = (left+right)/2;
+        if (x_position >= middle) {
+            if (x_position != middle) cnt_less++;
+            left = middle + 1;
+        } else if (x_position < middle) {
+            cnt_big++;
+            right = middle;
+        }
+    } 
+}
+
+int C(int n, int k, const vector<ll> &fact, const vector <ll> &inv) {
+    if (k>n) return 0;
+    int multiply = (1LL*fact[n]*inv[k]) % MOD;
+    multiply = (1LL*multiply*inv[n-k]) % MOD;
+    return multiply;
+}
+
 void solve() {
     int n, x, pos;
     cin >> n >> x >> pos;
@@ -49,7 +84,6 @@ void solve() {
         //if (currentPos < pos) 
     }*/
 
-    cout << 15/2 <<endl;
 
     //Remplir un tableau trié avec des nombres de 1 à N
     //Compter les opérations binaires de recherche pour le nombre "pos"

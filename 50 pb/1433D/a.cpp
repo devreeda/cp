@@ -26,7 +26,43 @@ void printV(vi v) {
 g++ -std=c++11 -O2 -Wall a.cpp
 */
 void solve() {
-    int n;cin>>n;
+    int n; cin>>n;
+    vi v;
+    bool tousPareils = true;
+    int current; cin>>current;
+    v.push_back(current);
+    for (int i = 1; i<n; ++i) {
+        int a; cin>>a;
+        if (a != current) tousPareils = false;
+        v.push_back(a);
+    }
+    if (tousPareils) {
+        cout << "NO" << endl;
+    } else {
+        vector<pair<int, int>> bounds;
+        int root = v.at(0);
+        int rootIndex = 0;
+        int other, otherIndex;
+        for (int i = 1; i<n; ++i) {
+            if (v.at(i) != root) {
+                other = v.at(i);
+                otherIndex = i;
+                break;
+            }
+        }
+        for (int i = 1; i<n; ++i) {
+            if (v.at(i) != root) {
+                bounds.push_back({rootIndex+1, i+1});
+            } else bounds.push_back({otherIndex+1, i+1});
+        }
+        cout << "YES" << endl;
+        for (int k = 0; k<bounds.size(); ++k) {
+            cout << bounds.at(k).first << " " << bounds.at(k).second << endl;
+        }
+    }
+
+
+    /*int n;cin>>n;
     vi v;
     for (int i = 0; i<n; ++i) {
         int a;cin>>a;
@@ -73,7 +109,7 @@ void solve() {
         for (int k = 0; k<res.size(); ++k) {
             cout << res.at(k).first << " " << res.at(k).second << endl;
         }
-    }
+    }*/
 }
 
 int main() {
