@@ -18,7 +18,7 @@ Case #17: 37
 Case #18: 99
 Case #19: 94
 Case #20: 85
-Case #21: 1
+Case #21: 0
 Case #22: 128
 Case #23: 75
 Case #24: 102
