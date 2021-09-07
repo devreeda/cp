@@ -17,6 +17,8 @@ typedef vector<vi> vvi;
 #define LSOne(S) (S & (-S))
 #define isBitSet(S, i) ((S >> i) & 1)
 
+ofstream myfile;
+
 void printV(vi v)
 {
     for (int i = 0; i < v.size(); ++i)
@@ -37,29 +39,57 @@ void solve()
     for (int i = 0; i < n; ++i)
     {
         bool isdead = false;
-        for (int j = 0; j < n; ++j)
+        v[i][i] = 'Y';
+        if (out[i] == 'N')
+            isdead = true;
+        //de i jusqu'à 0
+        for (int j = i - 1; j >= 0; --j)
         {
-            if (i == j)
-            {
-                v[i][j] = 'Y';
-                isdead = false;
-                continue;
-            }
             if (isdead)
             {
                 v[i][j] = 'N';
                 continue;
             }
-            if (out[j] == 'N')
-                isdead = true;
-            if (out[i] == 'N' || in[j] == 'N')
+            if (in[j] == 'N')
             {
                 v[i][j] = 'N';
                 isdead = true;
                 continue;
             }
             v[i][j] = 'Y';
+            if (out[j] == 'N')
+                isdead = true;
         }
+        isdead = false;
+        if (out[i] == 'N')
+            isdead = true;
+        //de i + 1 jusqu'à n
+        for (int j = i + 1; j < n; ++j)
+        {
+            if (isdead)
+            {
+                v[i][j] = 'N';
+                continue;
+            }
+            if (in[j] == 'N')
+            {
+                v[i][j] = 'N';
+                isdead = true;
+                continue;
+            }
+            v[i][j] = 'Y';
+            if (out[j] == 'N')
+                isdead = true;
+        }
+    }
+    for (int i = 0; i < n; ++i)
+    {
+        for (int j = 0; j < n; ++j)
+        {
+
+            myfile << v[i][j];
+        }
+        myfile << "\n";
     }
 }
 
@@ -76,11 +106,14 @@ int main()
     int tt;
     cin >> tt;
     int i = 1;
+
+    myfile.open("output.txt");
     while (tt--)
     {
-        cout << "Case #" << i++ << ":\n";
+        myfile << "Case #" << i++ << ":\n";
         solve();
     }
+    myfile.close();
 
     /**
      * ALGORITHME DE TRI ET EN LEVER LES DUPLICATES

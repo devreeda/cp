@@ -23,6 +23,8 @@ void printV(vi v)
         cout << v.at(i) << " ";
     cout << "\n";
 }
+ifstream input;
+ofstream myfile;
 
 /*
 g++ -std=c++11 -O2 -Wall a.cpp
@@ -30,37 +32,21 @@ g++ -std=c++11 -O2 -Wall a.cpp
 void solve()
 {
     int n;
-    cin >> n;
-    string in, out;
-    cin >> in >> out;
-    vector<vector<char>> v(n, vector<char>(n));
+    input >> n;
+    string s;
+    input >> s;
+    int a = 0, b = 0;
     for (int i = 0; i < n; ++i)
     {
-        bool isdead = false;
-        for (int j = 0; j < n; ++j)
-        {
-            if (i == j)
-            {
-                v[i][j] = 'Y';
-                isdead = false;
-                continue;
-            }
-            if (isdead)
-            {
-                v[i][j] = 'N';
-                continue;
-            }
-            if (out[j] == 'N')
-                isdead = true;
-            if (out[i] == 'N' || in[j] == 'N')
-            {
-                v[i][j] = 'N';
-                isdead = true;
-                continue;
-            }
-            v[i][j] = 'Y';
-        }
+        if (s[i] == 'A')
+            ++a;
+        else
+            ++b;
     }
+    if (abs(a - b) != 1)
+        myfile << 'N' << "\n";
+    else
+        myfile << 'Y' << "\n";
 }
 
 int main()
@@ -72,13 +58,15 @@ int main()
     freopen("input.txt", "r", stdin);
     freopen("output.txt", "w", stdout);
 #endif
+    input.open("input.txt");
 
     int tt;
-    cin >> tt;
+    input >> tt;
     int i = 1;
+    myfile.open("output.txt");
     while (tt--)
     {
-        cout << "Case #" << i++ << ":\n";
+        myfile << "Case #" << i++ << ": ";
         solve();
     }
 

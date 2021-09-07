@@ -17,6 +17,8 @@ typedef vector<vi> vvi;
 #define LSOne(S) (S & (-S))
 #define isBitSet(S, i) ((S >> i) & 1)
 
+ofstream myfile;
+
 void printV(vi v)
 {
     for (int i = 0; i < v.size(); ++i)
@@ -24,43 +26,53 @@ void printV(vi v)
     cout << "\n";
 }
 
+bool isVoy(char freq)
+{
+    vector<int> v = {'A', 'E', 'I', 'O', 'U', 'Y'};
+    for (char c : v)
+    {
+        if (freq == c)
+            return false;
+    }
+    return true;
+}
+
 /*
 g++ -std=c++11 -O2 -Wall a.cpp
 */
 void solve()
 {
-    int n;
-    cin >> n;
-    string in, out;
-    cin >> in >> out;
-    vector<vector<char>> v(n, vector<char>(n));
-    for (int i = 0; i < n; ++i)
+    string s;
+    cin >> s;
+    //trouver la lettre la plus freq
+    //determiner si c'est une consonne ou non
+    //pour toutes les autres : si cons alors que voy (vis versa) +2 sinon +1
+    vector<int> v(26, 0);
+    for (char c : s)
+        v[(int)(c - 'A')]++;
+    int index = 0;
+    int max = 0;
+    for (int i = 0; i < 26; ++i)
     {
-        bool isdead = false;
-        for (int j = 0; j < n; ++j)
+        if (v[i] > max)
         {
-            if (i == j)
-            {
-                v[i][j] = 'Y';
-                isdead = false;
-                continue;
-            }
-            if (isdead)
-            {
-                v[i][j] = 'N';
-                continue;
-            }
-            if (out[j] == 'N')
-                isdead = true;
-            if (out[i] == 'N' || in[j] == 'N')
-            {
-                v[i][j] = 'N';
-                isdead = true;
-                continue;
-            }
-            v[i][j] = 'Y';
+            max = v[i];
+            index = i;
         }
     }
+    char freq = (char)(index + 'A');
+    int num = 0;
+    for (char c : s)
+    {
+        if (c != freq)
+        {
+            if (isVoy(c) == isVoy(freq))
+                num += 2;
+            else
+                num++;
+        }
+    }
+    cout << num << "\n";
 }
 
 int main()
@@ -76,11 +88,14 @@ int main()
     int tt;
     cin >> tt;
     int i = 1;
+
+    myfile.open("output.txt");
     while (tt--)
     {
-        cout << "Case #" << i++ << ":\n";
+        cout << "Case #" << i++ << ": ";
         solve();
     }
+    myfile.close();
 
     /**
      * ALGORITHME DE TRI ET EN LEVER LES DUPLICATES
